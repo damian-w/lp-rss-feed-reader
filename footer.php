@@ -1,6 +1,6 @@
 		</section>
 		<footer>
-			<h4>From <?php echo $footerSource; ?> | by Alex Forey</h4>
+			from <b>The Western Australian</b> - by Damian Worsdell
 		</footer>
 	</body>
 </html>
