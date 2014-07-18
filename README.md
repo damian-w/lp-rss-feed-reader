@@ -1,5 +1,6 @@
-Breaking News (The Western Australian) for Little Printer
+WA Breaking News for Little Printer
 =============
+Source: [The Western Australian - Breaking News](http://au.rss.news.yahoo.com/thewest/breaking.xml)
 
 This is a simple publication for the [Little Printer](http://bergcloud.com/littleprinter/) that pulls information from The Western Australian's Breaking News RSS feed.
 
@@ -33,3 +34,4 @@ Comments
 
 This project is a work in progress.
 Feel free to fork or contribute.
+Released under the GNU General Public Licence v2.
