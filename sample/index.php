@@ -2,33 +2,34 @@
 <html>
 	<head>
 		<title>Breaking News - The Western Australian</title>
+		<link rel="stylesheet" type="text/css" href="http://djw.net.au/lp/the-west-breaking/reset.css"> <!-- "Reset" the CSS -->
+		<link rel="stylesheet" type="text/css" href="http://djw.net.au/lp/the-west-breaking/style.css"> <!-- Grab the styling -->
 	</head>
-	<style>body {margin:0px; font-family:'Georgia';}</style>
 
 	<body>
 		<header>
-			<img src="../thick_line.png" alt="thick_line" width="384" height="5" style="padding-bottom:5px">
-			<img src="../the-western-australian-logo.png" width="384">
-			<h5><b>BREAKING NEWS</b> 6am, 18th of July 2014</h5>
-			<img src="../thick_line.png" alt="thick_line" width="384" height="5">
+			<img src="http://djw.net.au/lp/the-west-breaking/thick_line.png" class="thick-line" width="384" height="5">
+			<img src="http://djw.net.au/lp/the-west-breaking/the-western-australian-logo.png" class="logo" width="384">
+			<span class="subtitle"><b>Breaking News</b> as at 6am, 18th of July 2014</span>
+			<img src="http://djw.net.au/lp/the-west-breaking/thick_line.png" class="thick-line" width="384" height="5">
 		</header>
 
 		<section id="content">
 			<div class="item">
-				<h4>1912</h4>
-				<p>First Balkan War: The Greek Army accepted the surrender of the Ottoman garrison at Thessaloniki, preventing the Bulgarian Army from accepting it when they arrived one day later.</p>
+				<span class="title">QLD Family hit by both MH17 and MH370 plane disasters</span>
+				<span class="text">A Queensland family who lost relatives on doomed Malaysia Airlines flight MH370 are in mourning again after losing more family members on MH17 in Ukraine.</span>
 			</div>
 			<div class="item">
-				<h4>1940</h4>
-				<p>The Italian invasion of Greece failed as outnumbered Greek units repulsed the Italians in the Battle of Elaia–Kalamas.</p>
+				<span class="title">Scott falters in bid to reel in McIlroy</span>
+				<span class="text">World number one Adam Scott lost his putting touch over the early holes of his British Open second round.</span>
 			</div>
 			<div class="item">
-				<h4>1987</h4>
-				<p>A Provisional Irish Republican Army bomb exploded during a Remembrance Sunday ceremony  in Enniskillen, Northern Ireland, killing at least eleven people and injuring sixty-three others.</p>
+				<span class="title">Abbott criticises Russia's response to MH17 disaster</span>
+				<span class="text">Prime Minister Tony Abbott is not accepting Russian explanations for the shooting down of Malaysia Airlines flight MH17 and has demanded it not stand in the way of a full inquiry into the tragedy.</span>
 			</div>
 		</section>
 		<footer>
-			<h4>&copy; The Western Australian | by Damian Worsdell</h4>
+			from <b>The Western Australian</b> - by Damian Worsdell
 		</footer>
 	</body>
 </html>
