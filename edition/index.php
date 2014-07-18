@@ -14,10 +14,8 @@
 
 	makeHeader(); // Generate the header HTML
 
-	makeAnnouncement(); // Generate announcemnet, if there is one
-
 	html($items); // Generate the HTML for the items
 
-	makeFooter('wikipedia'); // Generate the footer HTML
+	makeFooter(); // Generate the footer HTML
 
 ?>
