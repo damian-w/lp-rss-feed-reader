@@ -12,34 +12,13 @@
 	}
 
 	// Make the footer by including it
-	function makeFooter($source) {
-		if ($source == 'bbc') $footerSource = 'The BBC';
-		elseif ($source == 'wikipedia') $footerSource = 'Wikipedia';
+	function makeFooter() {
 		include '../footer.php';
-	}
-
-	function makeAnnouncement() {
-		$announcements = json_decode(file_get_contents('../announcements.json'), true);
-		$announcement = '';
-		foreach ($announcements as $a) {
-			if (isToday($a['date'])) {
-				$announcement = $a;
-			}
-		}
-
-		if ($announcement)
-			include '../announcement.php';
 	}
 
 	function isToday($timestamp) {
 
 		$today = date('Ymd');
-		$announcementDay = date('Ymd', strtotime($timestamp));
-
-		if ($today == $announcementDay)
-			return true;
-		else
-			return false;
 	}
 
 	// This function will generate an ETag, which will be unique for each day
@@ -68,16 +47,17 @@
 	// The main function. This obtains the information on this day
 	function onThisDay($newOrOld, $number) {
 
-		$contents = trim(grab('http://en.wikipedia.org/w/api.php?action=featuredfeed&feed=onthisday&feedformat=rss'));
+		$contents = trim(grab('http://au.rss.news.yahoo.com/thewest/breaking.xml'));
 		
 		$array = xmlToArray($contents);
 		
 		// Count the number of days
 		$noOfDays = count($array['channel']['item']);
 		// Get the Key of today
-		$today = $noOfDays - 1;
+		//$today = $noOfDays - 1;
 		// Get the description of today's entry
-		$input = $array['channel']['item'][$today]['description'];
+		//$input = $array['channel']['item'][$today]['description'];
+		$input = $array['channel']['item']['description'];
 		
 		// The contents of 'description' now contains a HTML unordered list
 
@@ -156,8 +136,8 @@
 		// Start with a simple loop of each item
 		foreach ($items as $item) {
 			echo '<div class="item">';
-			echo '	<h4>' , $item['year'] , '</h4>';
-			echo '	<p>' , $item['info'] , '</p>';
+			echo '	<span class="title">' , $item['year'] , '</span>';
+			echo '	<span class="text">' , $item['info'] , '</span>';
 			echo '</div>';
 		}
 	}
@@ -169,7 +149,7 @@
 	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
 	    curl_setopt($ch, CURLOPT_URL, $url);
 	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	    curl_setopt($ch, CURLOPT_USERAGENT, 'On This Day for Little Printer by Alex Forey');
+	    curl_setopt($ch, CURLOPT_USERAGENT, 'The Western Australian (Breaking News) for Little Printer by Damian Worsdell');
 	    $data = curl_exec($ch);
 	    curl_close($ch);
 	    return $data;
