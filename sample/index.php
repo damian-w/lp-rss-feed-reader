@@ -1,17 +1,16 @@
-
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>On This Day</title>
-		<link rel="stylesheet" type="text/css" href="../reset.css">
-		<link rel="stylesheet" type="text/css" href="../style.css">
+		<title>Breaking News - The Western Australian</title>
 	</head>
+	<style>body {margin:0px; font-family:'Georgia';}</style>
 
 	<body>
 		<header>
-			<h1>On <em>This Day</em></h1>
-			<h3>In History</h3>
-			<h2>8 November</h2>
+			<img src="../thick_line.png" alt="thick_line" width="384" height="5" style="padding-bottom:5px">
+			<img src="../the-western-australian-logo.png" width="384">
+			<h5><b>BREAKING NEWS</b> 6am, 18th of July 2014</h5>
+			<img src="../thick_line.png" alt="thick_line" width="384" height="5">
 		</header>
 
 		<section id="content">
@@ -29,7 +28,7 @@
 			</div>
 		</section>
 		<footer>
-			<h4>From Wikipedia | by Alex Forey</h4>
+			<h4>&copy; The Western Australian | by Damian Worsdell</h4>
 		</footer>
 	</body>
 </html>
