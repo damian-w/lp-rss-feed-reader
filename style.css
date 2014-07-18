@@ -1,89 +1,56 @@
-* {
-	margin: 0px;
-	padding: 0px;
-}
-
 header {
 	width: 384px;
-	height: 160px;
 	text-align: center;
-	background: url(http://little.alexforey.com/onthisday/divide.png) no-repeat center 120px;
+	background: url(http://djw.net.au/lp/divide.png) no-repeat center 120px;
 }
 
 body {
 	max-width: 384px;
 	width: 384px;
-	font-family: 'Crimson';
+	font-family:'Trebuchet Ms'
 }
 
-h1 {
-	font-size: 58px;
-	margin-top: 20px;
-}
-
-h1 em {
+b {
 	font-weight: bold;
 }
 
-h3 {
-	font-size: 18px;
-	margin-top: -8px;
-	font-weight: bold;
+.logo {
+	padding: 6px 0;
 }
 
-h2 {
-	font-size: 30px;
-	margin-top: 8px;
+.thick-line {
+	
 }
 
 #content {
-	width: 384px;
-	margin: 0px 0px;
+	
 }
 
 .item {
 	padding-top: 10px;
 	padding-bottom: 15px;
-	background: url(http://little.alexforey.com/onthisday/dotted_line.png) no-repeat bottom center;
-}
-
-.item h4 {
-	text-align: center;
-	margin-bottom: 10px;
-	font-size: 40px;
-}
-
-.item p {
-	text-align: left;
-	font-size: 30px;
-	line-height: 1.1;
+	background: url(http://djw.net.au/lp/the-west-breaking/thin_line.png) no-repeat bottom center;
 }
 
 .item:last-child {
-    background: url(http://little.alexforey.com/onthisday/thick_line.png) no-repeat bottom center;
+    background: url(http://djw.net.au/lp/the-west-breaking/thick_line.png) no-repeat bottom center;
 }
 
-.announcement {
-	border: 4px dashed black;
-	padding: 10px;
-	margin-top: 15px;
-	margin-bottom: 10px;
+.title {
+	display: block;
+	font-size: 1.275em;
+	font-weight: bold;
+	padding: 0 0 10px 0;
 }
 
-.announcement h3 {
-	text-align: center;
-	margin: 6px 0;
-	font-size: 19px;
-}
-
-.announcement p {
-	line-height: 1.2;
-	font-size: 19px;
+.text {
+	display: block;
+	font-size: 1.010em;
 }
 
 footer {
 	text-align: center;
-	font-size: 18px;
+	font-size: 13px;
 	margin-top: 10px;
-	margin-bottom: 10px;
+	margin-bottom: 25px;
 }
