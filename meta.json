@@ -1,0 +1,37 @@
+{
+  "publication_api_version":        "1.0",
+  "owner_email":					"me@alexforey.com",
+  "name":                           "On This Day",
+  "description":                    "Some significant events that happened on this day in history",
+  "delivered_on":                   "every day",
+  "external_configuration":         false,
+  "send_timezone_info":             true,
+  "send_delivery_count":            false,
+  "config": {
+	  "fields": 
+	    [
+	      {
+	        "type": "radio",
+	        "name": "time_preference",
+	        "label": "Would you like:",
+	        "options": 
+	          [
+	            ["More recent events (1800s - 2010s)","new"],
+	            ["Less recent events (1000s - 1700s)", "old"]
+	          ] 
+	       },
+	       {
+	       	"type": "select",
+	       	"name": "number",
+	       	"label": "How many stories would you like to receive?",
+	       	"options":
+	       		[
+	       			["One Story", "1"],
+	       			["Two Stories", "2"],
+	       			["Three Stories", "3"],
+	       			["Four Stories", "4"]
+	       		]
+	       }
+	    ]
+	}
+}
