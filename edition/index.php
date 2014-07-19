@@ -21,5 +21,7 @@
 	generateFooter(); // Generate the footer HTML
 	
 	// Publication sent!!
+	
+	exit;
 
 ?>
