@@ -16,6 +16,8 @@ I use DOMDocument alongside the XML Manipulation that is within PHP which simply
 
 Obviously I could make this a whole bunch more complicated, but it serves it's purpose well... for now.
 
+Released under the GNU General Public Licence v2.
+
 How you could use it
 --------------------
 
@@ -59,5 +61,4 @@ Explained below is the layout and file structure... the method to my (little) ma
 Thanks
 ------
 
-This project was originally cloned from [Alex Forey](https://github.com/alfo) in his [On This Day](https://github.com/alfo/onthisday) Little Printer Publication project...
-... that was until I re-wrote most of it. Credit still to Alex for giving me the inital motivation.
+This project was originally cloned from [Alex Forey](https://github.com/alfo) in his [On This Day](https://github.com/alfo/onthisday) Little Printer Publication project... that was until I re-wrote most of it. Credit still to Alex for giving me the inital motivation.
