@@ -2,17 +2,17 @@ RSS Feed 'Reader' for Little Printer
 =============
 Current RSS Source: [The Western Australian - Breaking News](http://au.rss.news.yahoo.com/thewest/breaking.xml)
 
-I bought a Little Printer, plugged it in and discovered there was no Western Australian locialise news feeds! (duh)
-So, this is my answer to that dilemma.
+I bought a Little Printer, plugged it in and discovered there was no Western Australian locialise news feeds (duh)! So, this is my answer to that dilemma.
 
 About
 -----
 
 This is a simple publication for the [Little Printer](http://bergcloud.com/littleprinter/) that pulls information from The Western Australian's Breaking News RSS feed.
+
 Initally, I intended to only write this for use with The Western Australian's RSS Feed in mind; but after completion I've discovered this works very well with practilly any news-based RSS feed I could through at it with minor modification.
 
 Written in PHP using minimal functions and no external requirements or libaries.
-I use DOMDocument alongside the XML Manipulation that is within PHP which simply: "getElementsByTagName" (discriptive AND helpful function!)
+I use DOMDocument alongside the XML Manipulation that is within PHP which simply: `getElementsByTagName()` (a discriptive AND helpful function!)
 
 Obviously I could make this a whole bunch more complicated, but it serves it's purpose well... for now.
 
@@ -22,9 +22,11 @@ How you could use it
 If you'd like to clone this project and use it yourself, you're more than welcome!
 
 Simply to change the RSS feed source, change the link in functions.php
+
 `$rss->load('http://au.rss.news.yahoo.com/thewest/breaking.xml');`
 
 If you'd like to change the number of items shown, literally just changed the number under `$limit`
+
 `$limit = 5; // ** ITEM LIMIT`
 
 Other than that, dependant on how your RSS feed is formatted you can change the stylising and output.
