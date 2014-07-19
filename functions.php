@@ -1,158 +1,77 @@
 <?php
 
-	// Some installations of PHP will complain if this isn't done:
-	date_default_timezone_set('UTC');
+	/*----------------------------------------------------------*\
+	| **** RSS News Feed Reader  for Little Printer by BERG **** |
+	+------------------------------------------------------------+
+	|      Released under the GNU General Public Licence v2      |
+	+------------------------------------------------------------+
+	|   Created by Damian Worsdell           http://djw.net.au/  |
+	\*----------------------------------------------------------*/
 	
-	// Include phpQuery, the engine we use to extract the content from Wikipedia
-	include 'phpQuery.php';
-
-	// Make the header by including it 
-	function makeHeader() {
-		include '../header.php'; // relative URL from /edition and /sample
+	// Set the timezone to the same as the RSS Feed source
+	date_default_timezone_set('Australia/Perth');
+	
+	// Remove the empty lines from the content recieved by the RSS feed
+	function removeEmptyLines($string) {
+		return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string);
 	}
-
-	// Make the footer by including it
-	function makeFooter() {
+	
+	// Remove any source / ad tag (in brackets) from the content recieved by the RSS feed
+	function removeTag($string) {
+		return preg_replace("@\(.*?\)@", "", $string);
+	}
+	
+	// Generate the header section of the publication
+	function generateHeader() {
+		include '../header.php';
+	 // relative URL from /edition and /sample
+	}
+	
+	// Read, format and generate the news stories... (main function)
+	function generateContent() {
+		$rss = new DOMDocument();
+		$rss->load('http://au.rss.news.yahoo.com/thewest/breaking.xml'); // ** RSS FEED
+		$feed = array();
+		foreach($rss->getElementsByTagName('item') as $node) {
+			$item = array(
+				'title' => $node->getElementsByTagName('title')->item(0)->nodeValue,
+				'desc' => $node->getElementsByTagName('description')->item(0)->nodeValue,
+				'link' => $node->getElementsByTagName('link')->item(0)->nodeValue,
+				'date' => $node->getElementsByTagName('pubDate')->item(0)->nodeValue,
+			);
+			array_push($feed, $item);
+		}
+		
+		$limit = 5; // ** ITEM LIMIT
+		
+		for ($x = 0; $x < $limit; $x++) {
+			$title = removeTag(str_replace(' & ', ' &amp; ', $feed[$x]['title']));
+			$link = $feed[$x]['link'];
+			$description = $feed[$x]['desc'];
+			$date = date('l F d, Y', strtotime($feed[$x]['date']));
+			echo '<div class="item">';
+			echo '	<span class="title">' . $title . '</span>';
+			echo '	<span class="text">' . $description . '</span>';
+			echo '</div>';
+		}
+	}
+	
+	// Generate the footer section of the publication...
+	function generateFooter() {
 		include '../footer.php';
+	
 	}
-
-	function isToday($timestamp) {
-
-		$today = date('Ymd');
-	}
-
-	// This function will generate an ETag, which will be unique for each day
-	function ETag() {
+	
+	// Generate an ETag for the BERG Cloud, ensuring BERG doesn't recieve our content more than once
+	function littleprinterETag() {
 		// Get today's date
 		$date = date('d-m-Y');
 		// md5 it
 		header("ETag: " . md5($date));
 	}
-
+	
+	// Set the correct character set
 	function charset() {
 		header("Content-Type: text/html; charset=utf-8");
 	}
-
-	// A simple function to remove the empty lines from the content returned by Wikipedia
-	function removeEmptyLines($string) { return preg_replace("/(^[\r\n]*|[\r\n]+)[\s\t]*[\r\n]+/", "\n", $string); }
-
-	function xmlToArray($input) {
-		// -- This bit could do with some cleaning up, but it works for now -- //
-		$xml = simplexml_load_string($input); // Load the XML returned into an object
-		$json = json_encode($xml); // Convert the object to JSON
-		$array = json_decode($json, true); // Convert the JSON into an array
-		return $array;
-	}
-
-	// The main function. This obtains the information on this day
-	function onThisDay($newOrOld, $number) {
-
-		$contents = trim(grab('http://au.rss.news.yahoo.com/thewest/breaking.xml'));
-		
-		$array = xmlToArray($contents);
-		
-		// Count the number of days
-		$noOfDays = count($array['channel']['item']);
-		// Get the Key of today
-		//$today = $noOfDays - 1;
-		// Get the description of today's entry
-		//$input = $array['channel']['item'][$today]['description'];
-		$input = $array['channel']['item']['description'];
-		
-		// The contents of 'description' now contains a HTML unordered list
-
-		// Initialize phpQuery to deal with the parsing
-		$doc = phpQuery::newDocumentHTML($input);
-
-		// Produce an array of the contents of the list items
-		$items = $doc->find('li')->text();
-
-		// Trim the whitespace around the items
-		$items = trim(removeEmptyLines($items));
-		
-		// Now $items is a string with each item on a new line
-		
-		// Split $items into an $output array based on new lines
-		foreach(preg_split("/(\r?\n)/", $items) as $line){
-			$output[] = trim($line);
-		}
-
-		// Now we have a nice array with maybe three or four items in it that look like this:
-		// "1843 – Something awesome happened"
-
-		// We're now going to separate it into a multidimensional array that looks like this:
-		/*
-
-		Item 1
-			- Year
-			- Info
-		Item 2
-			- Year
-			- Info
-
-		*/
-
-		$return = array(); // Prepare an array for outputting
-
-		foreach ($output as $item) {
-			$bits = explode(" – ", $item); // Separate the string into year and info
-			$year = trim($bits[0]); // Set $year as the first part 
-			unset($bits[0]); // Stop the year turning up twice
-			$info = implode(" – ", $bits); // Set $info as the rest of the parts
-			$add = array(); // Prepare an array for adding
-			$add['year'] = $year; // Add the year
-			
-			// Remove (pictured) from the text, as no pictures are printed
-			$pictured = " (pictured)";
-			$info = str_replace($pictured, "", $info);
-			
-			$add['info'] = $info; // Add the info
-			$return[] = $add; // Add the $add to the $return array
-		}
-
-		if ($newOrOld == 'old') {
-			$start = 0;
-		} else {
-			$start = -$number;
-		}
-
-		// Sort all the stories by year
-		usort($return, "sortByYear");
-
-		$return = array_slice($return, $start, $number, true);
-
-		// Return!
-		return $return;
-
-	}
-
-	function sortByYear($a, $b) {
-		return $a['year'] - $b['year'];
-	}
-
-	// This function takes in an $items array, and outputs some HTML
-	function html($items) {
-
-		// Start with a simple loop of each item
-		foreach ($items as $item) {
-			echo '<div class="item">';
-			echo '	<span class="title">' , $item['year'] , '</span>';
-			echo '	<span class="text">' , $item['info'] , '</span>';
-			echo '</div>';
-		}
-	}
-
-	function grab($url) {
-	    $ch = curl_init();
-	    curl_setopt($ch, CURLOPT_HEADER, 0);
-	    curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-	    curl_setopt($ch, CURLOPT_TIMEOUT, 5);
-	    curl_setopt($ch, CURLOPT_URL, $url);
-	    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-	    curl_setopt($ch, CURLOPT_USERAGENT, 'The Western Australian (Breaking News) for Little Printer by Damian Worsdell');
-	    $data = curl_exec($ch);
-	    curl_close($ch);
-	    return $data;
-	}
-	
 ?>

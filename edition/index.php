@@ -1,21 +1,25 @@
 <?php
 
-	require('../functions.php');
+	/*----------------------------------------------------------*\
+	| **** RSS News Feed Reader  for Little Printer by BERG **** |
+	+------------------------------------------------------------+
+	|      Released under the GNU General Public Licence v2      |
+	+------------------------------------------------------------+
+	|   Created by Damian Worsdell           http://djw.net.au/  |
+	\*----------------------------------------------------------*/
 	
-	ETag(); // Output the ETag
-	charset(); // Output the charset header, as here: http://remote.bergcloud.com/developers/reference/edition#charsets
-
-	$default = 3;
-	$number = isset($_GET['number'])?$_GET['number']:$default;
-
-	$items = onThisDay($_GET['time_preference'], $number); // Grab the items
-
-	// -- Output HTML -- //
-
-	makeHeader(); // Generate the header HTML
-
-	html($items); // Generate the HTML for the items
-
-	makeFooter(); // Generate the footer HTML
+	// Grab all of our lovely functions...
+	require ('../functions.php');
+	
+	// Send the ETag and the Character Set to the BERG Cloud...
+	littleprinterETag();
+	charset();
+	
+	// Create the publication...
+	generateHeader(); // Generate the header HTML
+	generateContent(); // Generate the HTML for the items
+	generateFooter(); // Generate the footer HTML
+	
+	// Publication sent!!
 
 ?>
