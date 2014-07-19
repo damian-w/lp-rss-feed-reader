@@ -2,9 +2,9 @@
   "publication_api_version":        "1.0",
   "owner_email":					"damian.w@iinet.net.au",
   "name":                           "The Western Australian - Breaking News",
-  "description":                    "Breaking News and Headlines from The Western Australian delivered daily at the time of your choice.",
+  "description":                    "Breaking News and Headlines from The Western Australian delivered daily at any time of your choice.",
   "delivered_on":                   "daily",
   "external_configuration":         false,
-  "send_timezone_info":             true,
+  "send_timezone_info":             false,
   "send_delivery_count":            false
 }
