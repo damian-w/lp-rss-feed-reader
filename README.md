@@ -1,6 +1,6 @@
 RSS Feed 'Reader' for Little Printer
 =============
-Currentl RSS Source: [The Western Australian - Breaking News](http://au.rss.news.yahoo.com/thewest/breaking.xml)
+Current RSS Source: [The Western Australian - Breaking News](http://au.rss.news.yahoo.com/thewest/breaking.xml)
 
 I bought a Little Printer, plugged it in and discovered there was no Western Australian locialise news feeds! (duh)
 So, this is my answer to that dilemma.
